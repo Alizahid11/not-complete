@@ -1,0 +1,80 @@
+<HTml>
+<Script>
+	var points =0;
+	var tarleft=1;
+	var left= 1;
+	var Time;
+	var top1= 400;
+	var timer=window.setInterval(tar1,1000);
+
+	function tar1(){
+		document.getElementById("tar").style.left=tarleft;
+		tarleft+=20;
+		if(tarleft>400)
+			tarleft=1;
+	}
+	function move(){
+		if(event.keyCode==39){
+			left+=10;
+		}
+
+		if(event.keyCode==37){
+			left-=10;
+		}
+
+		if(left>400){
+			left=400;
+		}
+		if(left<1){
+			left=1;
+		}
+		if(event.keyCode==32){
+			top1=400;
+			document.getElementById("xyz").style.left=document.getElementById("abc").style.left;
+			document.getElementById("xyz").style.visibility="visible";
+			Time=window.setInterval(firing, 20); 
+		}
+		document.getElementById("abc").style.left=left;	
+		}
+
+		function firing(){
+			document.getElementById("xyz").style.top=top1;
+			top1-=10;
+			if(parseInt(document.getElementById("xyz").style.top)<=125){
+					if(xyz.style.left>tarleft||xyz.style.left<tarleft+50){
+						points ++;
+						document.getElementById("pnts").innerHTML= points;
+					}
+					window.clearInterval(Time);
+
+				}
+			
+		}
+</Script>
+
+
+
+<body onkeydown="move()">
+	<span id="abc" style="position: absolute;top:400;left:1">
+	
+		<pre>
+ ___
+_| |_
+		</pre>
+	</span>
+
+	<span id="xyz" style="position: absolute;top:400;left:100; visibility: hidden;"> 
+	*
+	</span>
+	<span id="tar" style="position: absolute;top:100; left:1">
+	<pre>
+____
+|  |
+\--/
+
+</pre>
+	</span>
+	<div id="pnts"> </div>
+</body>
+
+</HTml>
